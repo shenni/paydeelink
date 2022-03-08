@@ -4,7 +4,23 @@ from flask import current_app, render_template, redirect, url_for, flash, reques
 from flask_mail import Message
 
 
-@app.route('/home', methods=['GET', 'POST'])
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    return render_template('thankyou.html')
+@app.route('/home/', defaults={'email': ""}, methods=['GET', 'POST'])
+@app.route('/home/<email>', methods=['GET', 'POST'])
+@app.route('/', defaults={'email': ""}, methods=['GET', 'POST'])
+@app.route('/<email>', methods=['GET', 'POST'])
+def home(email):
+
+    req = f"Hi," + "\n\n"
+    req = req + f"Request:PaydeeLink Tour " + "\n\n"
+    req = req + f"Here is your login detail." + "\n"
+    req = req + f"  Email: {email}" + "\n"
+
+    msg = Message("PaydeeLink tour request",
+                  sender="team@paydee.co",
+                  recipients=["yokesan@paydee.co"])
+    #,
+    #bcc=[app.config['GOLIVE_TEAM_EMAIL']])
+    msg.body = req
+    mail.send(msg)
+
+    return render_template('thankyou.html', email=email)

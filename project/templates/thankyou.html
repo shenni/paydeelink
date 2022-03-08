@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{title}}</title>
+  <title>Thank You</title>
 
   <!-- Bootstrap 5 CSS only -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
@@ -17,19 +17,19 @@
 <body>
   <div class="container">
 
+        <br><br>
 
-        <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Thank You</h5>
-              <p class="card-text">
-                Your email is yokesan@paydee.co
+        <div class="row d-flex justify-content-center">
+            
+            <img class="w-25" src="{{url_for('static', filename='img/thank_you.png')}}">
+            
+            {% if email|length %}
+            <p class="card-text text-center">Your email is {{email}}</div>
+            <br>
+            {% endif %}
 
-                Our team will get in touch with you soon to give you a brief tour of PaydeeLink.
-                </p>
-            </div>
-          </div>
-
-
+            <p class="card-text text-center">Our team will get in touch with you soon to give you a brief tour of PaydeeLink.</p> 
+        </div>
   </div>
 
 

@@ -4,11 +4,14 @@ from flask import current_app, render_template, redirect, url_for, flash, reques
 from flask_mail import Message
 
 
-@app.route('/home/', defaults={'email': ""}, methods=['GET', 'POST'])
-@app.route('/home/<email>', methods=['GET', 'POST'])
-@app.route('/', defaults={'email': ""}, methods=['GET', 'POST'])
-@app.route('/<email>', methods=['GET', 'POST'])
-def home(email):
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    return "OK"
+
+@app.route('/thank_you/', defaults={'email': ""}, methods=['GET', 'POST'])
+@app.route('/thank_you/<email>', methods=['GET', 'POST'])
+def thank_you(email):
 
     req = f"Hi," + "\n\n"
     req = req + f"Request:PaydeeLink Tour " + "\n\n"

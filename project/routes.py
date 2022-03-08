@@ -13,17 +13,22 @@ def home():
 @app.route('/thank_you/<email>', methods=['GET', 'POST'])
 def thank_you(email):
 
-    req = f"Hi," + "\n\n"
-    req = req + f"Request:PaydeeLink Tour " + "\n\n"
-    req = req + f"Here is your login detail." + "\n"
-    req = req + f"  Email: {email}" + "\n"
 
-    msg = Message("PaydeeLink tour request",
-                  sender="team@paydee.co",
-                  recipients=["yokesan@paydee.co"])
-    #,
-    #bcc=[app.config['GOLIVE_TEAM_EMAIL']])
-    msg.body = req
-    mail.send(msg)
+    if len(email) > 0: 
+
+        req = f"Hi," + "\n\n"
+        req = req + f"Request:PaydeeLink Tour " + "\n\n"
+        req = req + f"Here is your login detail." + "\n"
+        req = req + f"  Email: {email}" + "\n"
+
+        msg = Message("PaydeeLink tour request",
+                    sender="team@paydee.co",
+                    recipients=["yokesan@paydee.co"])
+        #,
+        #bcc=[app.config['GOLIVE_TEAM_EMAIL']])
+        msg.body = req
+        mail.send(msg)
+
+        print("email sent")
 
     return render_template('thankyou.html', email=email)
